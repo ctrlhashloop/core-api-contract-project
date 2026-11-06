@@ -1,0 +1,38 @@
+name: API Contract CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install -r server/requirements.txt
+          pip install pytest pact-python
+
+      - name: Install Node Dependencies
+        run: |
+          cd pact && npm install
+
+      - name: Run Consumer Pact Tests
+        run: |
+          cd pact && npm test
+
+      - name: Run Provider Contract Verification
+        run: |
+          pytest tests/test_contract_provider.py -v
