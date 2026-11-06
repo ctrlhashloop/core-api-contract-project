@@ -1,0 +1,30 @@
+{
+  "files.associations": {
+    "*.yaml": "yaml",
+    "*.yml": "yaml"
+  },
+  "yaml.schemas": {
+    // "file:///openapi/openapi.yaml": "/openapi/openapi.yaml"
+    "./openapi/openapi.yaml": "/openapi/openapi.yaml"
+  },
+  // --- Python / FastAPI Settings ---
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/server/.venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/server"
+  ],
+  "pytest.iniPath": "${workspaceFolder}/tests",
+  "pytest.enabled": true,
+
+  // --- TypeScript / Jest Settings ---
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "js/ts.tsdk.path": "${workspaceFolder}/pact/node_modules/typescript/lib",
+  "jest.rootPath": "${workspaceFolder}/pact",
+  "jest.autoRun": "off"
+}

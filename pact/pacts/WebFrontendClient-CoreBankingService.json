@@ -1,0 +1,66 @@
+{
+  "consumer": {
+    "name": "WebFrontendClient"
+  },
+  "interactions": [
+    {
+      "description": "a request for account details",
+      "providerStates": [
+        {
+          "name": "account exists with id 123e4567-e89b-12d3-a456-426614174000"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/accounts/123e4567-e89b-12d3-a456-426614174000"
+      },
+      "response": {
+        "body": {
+          "accountNumber": "ACC-987654",
+          "balance": 1500.5,
+          "currency": "USD",
+          "id": "123e4567-e89b-12d3-a456-426614174000"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.accountNumber": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.balance": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "17.1.4"
+    },
+    "pactRust": {
+      "ffi": "0.5.8",
+      "models": "1.3.16"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "CoreBankingService"
+  }
+}

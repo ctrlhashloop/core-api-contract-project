@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info:
+  title: Core Banking API
+  version: 1.0.0
+paths:
+  /accounts/{id}:
+    get:
+      summary: Get account details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Account retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, accountNumber, balance, currency]
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  accountNumber:
+                    type: string
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+        '404':
+          description: Account not found
